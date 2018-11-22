@@ -24,7 +24,7 @@ var Engine = (function(global) {
         ctx = canvas.getContext('2d'),
         lastTime;
 
-    canvas.width = 505;
+    canvas.width = 707;
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
@@ -106,6 +106,8 @@ var Engine = (function(global) {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
+        
+
         var rowImages = [
                 'images/water-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
@@ -115,12 +117,14 @@ var Engine = (function(global) {
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
             numRows = 6,
-            numCols = 5,
+            numCols = 7,
             row, col;
+             
 
         // Before drawing, clear existing canvas
         ctx.clearRect(0,0,canvas.width,canvas.height);
 
+       
         /* Loop through the number of rows and columns we've defined above
          * and, using the rowImages array, draw the correct image for that
          * portion of the "grid"
@@ -134,10 +138,13 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
+                 
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
+          
+          
+        ctx.drawImage(Resources.get('images/Selector.png'), 6 * 101, 5 * 83);
         renderEntities();
     }
 
@@ -154,6 +161,8 @@ var Engine = (function(global) {
         });
 
         player.render();
+        collectables.render();
+     
     }
 
     /* This function does nothing but it could have been a good place to
@@ -173,7 +182,13 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Selector.png',
+        'images/Heart.png'
     ]);
     Resources.onReady(init);
 
